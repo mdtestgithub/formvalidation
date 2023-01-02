@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Form Validation</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="container">
+            <h1>Form Validation</h1>
+
+            <form id="form">
+                <div class="row">
+                    <div class="alert alert-primary" role="alert" style="display: none;" id="alert">
+
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Name</label>
+                        <input class="form-control" type="text" id="name" required placeholder="Enter your Full Name">
+
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Age</label>
+                        <input class="form-control" type="number" id="age" required placeholder="Enter Your Age">
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Email</label>
+                        <input class="form-control" type="email" id="email" required
+                            placeholder="Enter Your Vaalid Email Id">
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Mobile Number</label>
+                        <input class="form-control" type="Number" id="Number" required
+                            placeholder="Enter Your 10 Digite Mobile Number">
+                        </di <div class="col-sm-1 mt-3">
+                        <label for="gender">Gender :</label>
+                        <br>
+                        <input name="gender" type="radio" id="male">Male
+                        <input name="gender" type="radio" id="female">Female
+
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Qualification</label>
+                        <select class="form-control">
+                            <option selected disabled>--Select</option>
+                            <option>Matriculation</option>
+                            <option>Intermediate</option>
+                            <option>Greduate</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-6 mt-2">
+                        <label>Select Document :</label>
+                        <label>Aadhar Card</label>
+                        <input type="checkbox" value="aadhar">
+                        <label>Pan Card</label>
+                        <input type="checkbox" value="pan">
+                        <label>Other</label>
+                        <input type="checkbox" value="other">
+
+                    </div>
+
+                    <div class="col-sm-6 mt-3">
+                        <label>Upload Photo</label>
+                        <input accept="image/*" class="form-control" type="file" id="photo">
+                    </div>
+
+
+
+                </div>
+                <div class="text-center mt-5">
+                    <button onclick="formValidation()" type="button" class="btn btn-primary">Submit</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <script>
+        function formValidation() {
+            var alert = document.getElementById('alert')
+            var form =document.getElementById('form')
+
+            //name validation
+            var name = document.getElementById('name').value
+            if(name == ""){
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter name";
+                return 0;
+                
+            }
+
+
+
+            //age Validation
+            var age = document.getElementById('age').value
+            if(age == ""){
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter a age";
+                return 0;
+                
+            }
+            
+            if (age >= 18) {
+                alert.style.display = "none";
+            }
+            else {
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter age above 18 years";
+                return 0;
+            }
+            //Email Validation
+            var email = document.getElementById('email').value
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;          
+              if(email == ""){
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter a Email Address";
+                return 0;
+                
+            }
+
+            if (email.match(mailformat)) {
+                alert.style.display = "none";
+            }
+            else {
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter Valid Email";
+                return 0;
+
+            }
+
+
+            //phone Number Validation
+            var phone = document.getElementById('Number').value
+
+            if(phone == ""){
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter Mobile Number";
+                return 0;
+                
+            }
+            var numberformat =/^(\[\-\s]?)?[0]?(91)?[789]\d{9}$/
+            if(phone.match(numberformat)){
+                alert.style.display = "none";
+
+            }
+            else {
+                alert.style.display = "block";
+                alert.innerHTML = "plz enter Valid mobile number";
+                return 0;
+
+            }
+            //Photo Validation
+            var photo =document.getElementById("photo").value
+            if(photo==""){
+                alert.style.display = "block";
+                alert.innerHTML = "plz Upload photo";
+                return 0;
+                
+            }
+            
+            photo = photo.split(".");
+            var extentaion = photo[1];
+            if(extentaion == "jpeg" || extentaion == "png" || extentaion == "jpg"){
+                alert.style.display = "none";
+
+            }
+            else{
+                alert.style.display = "block";
+                alert.innerHTML = "plz Upload JPEG or PNG type Image";
+                return 0;
+            }
+
+            form.submit();  
+
+
+        }
+    </script>
+
+</body>
+
+</html>
